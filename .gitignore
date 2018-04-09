@@ -1,0 +1,14 @@
+# Truffle
+build
+
+# Node
+node_modules
+package-lock.json
+
+# VS Code
+.vscode
+
+# Logs
+logs
+*.log
+npm-debug.log*
