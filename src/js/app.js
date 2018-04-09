@@ -78,6 +78,28 @@ App = {
         }).catch(function (err) {
             console.error(err.message);
         });
+    },
+
+    sellItem: function() {
+        var itemName = $('#article_name').val();
+        var itemDescription = $('#article_description').val();
+        var itemPrice = web3.toWei($('#article_price').val() || 0, "ether");
+
+        if (itemName.trim() === '' || itemPrice === 0)
+        {
+            return false;
+        }
+
+        App.contracts.ChainList.deployed().then(function (instace) {
+            return instace.sellItem(itemName, itemDescription, itemPrice, {
+                from: App.account,
+                gas: 500000
+            });
+        }).then(function (result) {
+            App.reloadArticles();
+        }).catch(function (err) {
+            console.error(err);
+        });
     }
 };
 
