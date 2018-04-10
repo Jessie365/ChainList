@@ -7,6 +7,13 @@ contract ChainList {
     string description;
     uint256 price;
 
+    // events
+    event LogSellItem(
+        address indexed _sellerAddress,
+        string _itemToSell,
+        uint256 _price
+    );
+
     function getItem() public view returns 
     (
         address _sellerAddress,
@@ -24,5 +31,7 @@ contract ChainList {
         itemToSell = _itemToSell;
         description = _description;
         price = _price;
+
+        LogSellItem(sellerAddress, itemToSell, price);
     }
 }
